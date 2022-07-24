@@ -1,4 +1,7 @@
-.books-grid {
+.header {
+    margin: 10px;
+}
+#books-grid {
     display: grid;
     grid-template-columns: 200px 200px 200px;
     grid-template-rows: 150px 150px 150px;
@@ -9,6 +12,7 @@
 .card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border-radius: 5px;
+    padding: 2px 16px;
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -16,7 +20,3 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
   
-/* Add some padding inside the card container */
-.card-container {
-    padding: 2px 16px;
-}
