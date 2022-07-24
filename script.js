@@ -1,16 +1,36 @@
-var myLibrary = [
-    {title: 'Hello', author: 'World', pages: 100, completed: false},
-    {title: 'Cookbook', author: 'Chako', pages: 30, completed: false}
-];
+var myLibrary = [];
 
-function Book(title, author, pages, completed) {
+function Book(title, author, pages, read) {
   this.title = title
   this.author = author
   this.pages = pages
-  this.completed = false
+  this.read = read
 }
 
+
+
 function addBookToLibrary() {
+    var title = document.getElementById("title").value;
+    var author = document.getElementById("author").value;
+    var pages = document.getElementById("pages").value;
+    var read = document.getElementById("read").value;
+    
+    newBook = new Book(title, author, pages, read); 
+    myLibrary.push(newBook);
+    console.log(myLibrary);
+    displayBooks();
+}
+
+// get books from local storage
+if (localStorage.getItem('books') === null) {
+    myLibrary = [];
+  } else {
+    const booksFromStorage = JSON.parse(localStorage.getItem('books'));
+    myLibrary = booksFromStorage;
+  }
+
+function displayBooks() {
+    localStorage.setItem('books', JSON.stringify(myLibrary));
     //query container that will be displaying the cards
     const bookList = document.querySelector('#books-grid');
 
@@ -34,7 +54,16 @@ function addBookToLibrary() {
         const bookPages = document.createElement('p');
         bookPages.textContent = myLibrary[i].pages;
         bookCard.appendChild(bookPages);
+
+        // read
+        const bookRead = document.createElement('p');
+        if (myLibrary[i].read == "on") {
+            bookRead.textContent = 'Read!';
+        } else {
+            bookRead.textContent = 'Unfinished';
+        }
+        bookCard.appendChild(bookRead);
     }
 }
 
-addBookToLibrary();
+displayBooks();
