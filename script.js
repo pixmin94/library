@@ -57,13 +57,28 @@ function displayBooks() {
 
         // read
         const bookRead = document.createElement('p');
-        if (myLibrary[i].read == "on") {
+        if (myLibrary[i].read == "true") {
             bookRead.textContent = 'Read!';
         } else {
             bookRead.textContent = 'Unfinished';
         }
         bookCard.appendChild(bookRead);
+
+        // delete button
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.setAttribute('id', 'deleteBtn');
+        deleteBtn.onclick = deleteBook;
+        bookCard.appendChild(deleteBtn);
     }
+}
+
+function deleteBook(event) {
+    console.log(myLibrary)
+    deleteTitle = event.target.parentNode.firstChild.firstChild;
+    // deleteTitle.slice(3)
+    console.log(deleteTitle)
+
 }
 
 displayBooks();
