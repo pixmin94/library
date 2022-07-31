@@ -15,9 +15,10 @@ function addBookToLibrary() {
     var pages = document.getElementById("pages").value;
     var read = document.getElementById("read").value;
     
-    newBook = new Book(index, title, author, pages, read); 
+    newBook = new Book(title, author, pages, read); 
     myLibrary.push(newBook);
     console.log(myLibrary);
+    window.location.reload();
     displayBooks();
 }
 
@@ -90,6 +91,7 @@ function deleteBook(event) {
             myLibrary.splice(i, 1)
         }
     }
+    window.location.reload();
     displayBooks();
 }
 
