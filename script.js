@@ -15,7 +15,7 @@ function addBookToLibrary() {
     var pages = document.getElementById("pages").value;
     var read = document.getElementById("read").value;
     
-    newBook = new Book(title, author, pages, read); 
+    newBook = new Book(index, title, author, pages, read); 
     myLibrary.push(newBook);
     console.log(myLibrary);
     displayBooks();
@@ -39,6 +39,12 @@ function displayBooks() {
         const bookCard = document.createElement('div');
         bookCard.classList.add('card');
         bookList.appendChild(bookCard);
+
+        // hidden index
+        // const bookIndex = document.createElement('p');
+        // bookIndex.textContent = i
+        // bookIndex.style.visibility = "hidden";
+        // bookCard.appendChild(bookIndex);
         
         // title
         const bookTitle = document.createElement('h4');
@@ -75,10 +81,16 @@ function displayBooks() {
 
 function deleteBook(event) {
     console.log(myLibrary)
-    deleteTitle = event.target.parentNode.firstChild.firstChild;
-    // deleteTitle.slice(3)
-    console.log(deleteTitle)
+    const deleteTitle = event.target.parentNode.firstChild.firstChild.firstChild;
+    const titleToStr = JSON.stringify(deleteTitle.textContent).replaceAll('"','')
+    console.log(titleToStr)
 
+    for (var i = 0; i < myLibrary.length; i++) {
+        if ( myLibrary[i].title === titleToStr) {
+            myLibrary.splice(i, 1)
+        }
+    }
+    displayBooks();
 }
 
 displayBooks();
